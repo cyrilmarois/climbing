@@ -5,20 +5,19 @@ declare(strict_types=1);
 use App\Actions\UpdateUser;
 use App\Models\User;
 
-it('may update a user', function (): void {
+it('may update a user email', function (): void {
     $user = User::factory()->create([
-        'name' => 'Old Name',
         'email' => 'old@email.com',
+        'email_verified_at' => null,
     ]);
 
     $action = resolve(UpdateUser::class);
 
     $action->handle($user, [
-        'name' => 'New Name',
+        'email' => 'new@email.com',
     ]);
 
-    expect($user->refresh()->name)->toBe('New Name')
-        ->and($user->email)->toBe('old@email.com');
+    expect($user->refresh()->email)->toBe('new@email.com');
 });
 
 it('resets email verification when email changes', function (): void {
@@ -51,9 +50,8 @@ it('keeps email verification when email stays the same', function (): void {
 
     $action->handle($user, [
         'email' => 'same@email.com',
-        'name' => 'Updated Name',
     ]);
 
     expect($user->refresh()->email_verified_at)->not->toBeNull()
-        ->and($user->name)->toBe('Updated Name');
+        ->and($user->email)->toBe('same@email.com');
 });
