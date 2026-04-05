@@ -27,7 +27,10 @@ final class ClubSeeder extends Seeder
         }
 
         // Additional clubs
-        Club::factory(5)->create();
+        $countryIds = Country::pluck('id');
+        Club::factory(5)->create([
+            'country_id' => fn () => $countryIds->random(),
+        ]);
 
         // Assign users to clubs
         $profiles = UserProfile::all();

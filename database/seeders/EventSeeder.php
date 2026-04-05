@@ -40,7 +40,10 @@ final class EventSeeder extends Seeder
         }
 
         // Standalone events
-        Event::factory(3)->create()->each(function (Event $event) use ($profiles): void {
+        $countryIds = \App\Models\Country::pluck('id');
+        Event::factory(3)->create([
+            'country_id' => fn () => $countryIds->random(),
+        ])->each(function (Event $event) use ($profiles): void {
             $participantCount = random_int(2, min(5, $profiles->count()));
             $participants = $profiles->random($participantCount);
 
