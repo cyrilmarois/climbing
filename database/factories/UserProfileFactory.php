@@ -20,7 +20,7 @@ final class UserProfileFactory extends Factory
             'user_id' => User::factory(),
             'firstname' => fake()->firstName(),
             'lastname' => fake()->lastName(),
-            'gender' => fake()->randomElement(['male', 'female', 'non_binary', 'other']),
+            'gender' => fake()->randomElement(['male', 'female']),
             'birth_date' => fake()->dateTimeBetween('-50 years', '-16 years'),
             'height' => fake()->randomFloat(2, 150, 200),
             'weight' => fake()->randomFloat(2, 45, 110),
