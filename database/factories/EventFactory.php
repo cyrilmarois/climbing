@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\RouteType;
+use App\Enums\Discipline;
 use App\Models\Country;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,7 +19,7 @@ final class EventFactory extends Factory
             'title' => fake()->sentence(3),
             'type' => fake()->optional()->randomElement(['competition', 'exhibition', 'workshop']),
             'division' => fake()->optional()->randomElement(['open', 'national', 'regional']),
-            'discipline' => fake()->randomElement(RouteType::cases()),
+            'discipline' => fake()->randomElement(Discipline::cases()),
             'date' => fake()->dateTimeBetween('-1 year', '+1 year'),
             'city' => fake()->optional()->city(),
             'country_id' => Country::factory(),

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\RouteType;
+use App\Enums\Discipline;
 use Carbon\CarbonInterface;
 use Database\Factories\RouteFactory;
 use Illuminate\Database\Eloquent\Collection;
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read int|null $color_id
  * @property-read string|null $line
  * @property-read int $order
- * @property-read RouteType|null $type
+ * @property-read Discipline|null $discipline
  * @property-read string|null $description
  * @property-read CarbonInterface|null $opening_date
  * @property-read CarbonInterface|null $closing_date
@@ -80,7 +80,7 @@ final class Route extends Model
             'grade_id' => 'integer',
             'color_id' => 'integer',
             'order' => 'integer',
-            'type' => RouteType::class,
+            'discipline' => Discipline::class,
             'opening_date' => 'date',
             'closing_date' => 'date',
             'is_active' => 'date',

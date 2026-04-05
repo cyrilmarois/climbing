@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum RouteType: string
+enum Discipline: string
 {
     case Bloc = 'bloc';
     case Lead = 'lead';

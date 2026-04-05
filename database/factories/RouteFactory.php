@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\RouteType;
+use App\Enums\Discipline;
 use App\Models\Club;
 use App\Models\Color;
 use App\Models\Grade;
@@ -24,7 +24,7 @@ final class RouteFactory extends Factory
             'color_id' => Color::factory(),
             'line' => fake()->optional()->randomElement(['A', 'B', 'C', 'D', 'E']),
             'order' => fake()->numberBetween(1, 20),
-            'type' => fake()->randomElement(RouteType::cases()),
+            'discipline' => fake()->randomElement(Discipline::cases()),
             'description' => fake()->optional()->sentence(),
             'opening_date' => fake()->optional()->date(),
             'closing_date' => null,
@@ -34,22 +34,22 @@ final class RouteFactory extends Factory
 
     public function bloc(): self
     {
-        return $this->state(fn (): array => [
-            'type' => RouteType::Bloc,
+        return $this->state(fn(): array => [
+            'type' => Discipline::Bloc,
         ]);
     }
 
     public function lead(): self
     {
-        return $this->state(fn (): array => [
-            'type' => RouteType::Lead,
+        return $this->state(fn(): array => [
+            'type' => Discipline::Lead,
         ]);
     }
 
     public function speed(): self
     {
-        return $this->state(fn (): array => [
-            'type' => RouteType::Speed,
+        return $this->state(fn(): array => [
+            'type' => Discipline::Speed,
         ]);
     }
 }

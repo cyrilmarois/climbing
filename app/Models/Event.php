@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\RouteType;
+use App\Enums\Discipline;
 use Carbon\CarbonInterface;
 use Database\Factories\EventFactory;
 use Illuminate\Database\Eloquent\Collection;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read string $title
  * @property-read string|null $type
  * @property-read string|null $division
- * @property-read RouteType|null $discipline
+ * @property-read Discipline|null $discipline
  * @property-read CarbonInterface $date
  * @property-read string|null $city
  * @property-read int|null $country_id
@@ -54,7 +54,7 @@ final class Event extends Model
     {
         return [
             'id' => 'integer',
-            'discipline' => RouteType::class,
+            'discipline' => Discipline::class,
             'date' => 'date',
             'country_id' => 'integer',
             'club_id' => 'integer',

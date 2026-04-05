@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('color_id')->nullable()->constrained('colors');
             $table->string('line', 50)->nullable(); // Identifiant de la ligne (A, B, 1, Red, etc.)
             $table->unsignedInteger('order')->default(1); // Ordre des routes dans la ligne
-            $table->enum('type', ['bloc', 'lead', 'speed'])->nullable(); // bloc, lead, speed
+            $table->enum('discipline', ['bloc', 'lead', 'speed'])->nullable(); // bloc, lead, speed
             $table->text('description')->nullable();
             $table->date('opening_date')->nullable();
             $table->date('closing_date')->nullable();
