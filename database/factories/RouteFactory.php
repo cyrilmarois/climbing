@@ -22,7 +22,7 @@ final class RouteFactory extends Factory
             'club_id' => Club::factory(),
             'grade_id' => Grade::factory(),
             'color_id' => Color::factory(),
-            'line' => fake()->optional()->randomElement(['A', 'B', 'C', 'D', 'E']),
+            'line' => (string)fake()->numberBetween(1, 20),
             'order' => fake()->numberBetween(1, 20),
             'discipline' => fake()->randomElement(Discipline::cases()),
             'description' => fake()->optional()->sentence(),
@@ -35,21 +35,21 @@ final class RouteFactory extends Factory
     public function bloc(): self
     {
         return $this->state(fn(): array => [
-            'type' => Discipline::Bloc,
+            'discipline' => Discipline::Bloc,
         ]);
     }
 
     public function lead(): self
     {
         return $this->state(fn(): array => [
-            'type' => Discipline::Lead,
+            'discipline' => Discipline::Lead,
         ]);
     }
 
     public function speed(): self
     {
         return $this->state(fn(): array => [
-            'type' => Discipline::Speed,
+            'discipline' => Discipline::Speed,
         ]);
     }
 }
