@@ -18,7 +18,7 @@ final class EventRecordFactory extends Factory
         return [
             'event_id' => Event::factory(),
             'user_profile_id' => UserProfile::factory(),
-            'ranking' => fake()->optional()->numberBetween(1, 100),
+            'rank' => fake()->optional()->numberBetween(1, 100),
             'score' => fake()->optional()->randomFloat(2, 0, 100),
         ];
     }

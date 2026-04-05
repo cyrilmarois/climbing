@@ -33,7 +33,7 @@ final class EventSeeder extends Seeder
                     EventRecord::factory()->create([
                         'event_id' => $event->id,
                         'user_profile_id' => $profile->id,
-                        'ranking' => $index + 1,
+                        'rank' => $index + 1,
                     ]);
                 }
             }
@@ -48,7 +48,7 @@ final class EventSeeder extends Seeder
                 EventRecord::factory()->create([
                     'event_id' => $event->id,
                     'user_profile_id' => $profile->id,
-                    'ranking' => $index + 1,
+                    'rank' => $index + 1,
                 ]);
             }
         });

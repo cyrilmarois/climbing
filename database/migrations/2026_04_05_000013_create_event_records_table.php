@@ -14,8 +14,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->foreignId('user_profile_id')->constrained('user_profiles')->cascadeOnDelete();
-            $table->unsignedInteger('ranking')->nullable();
-            $table->decimal('score', 8, 2)->nullable();
+            $table->unsignedInteger('rank')->nullable();
+            $table->decimal('score', 10, 2)->nullable();
             $table->timestamp('registered_at')->useCurrent();
 
             $table->unique(['event_id', 'user_profile_id']);

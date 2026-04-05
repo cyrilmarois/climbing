@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read int $id
  * @property-read int $event_id
  * @property-read int $user_profile_id
- * @property-read int|null $ranking
+ * @property-read int|null $rank
  * @property-read float|null $score
  * @property-read CarbonInterface $registered_at
  * @property-read Event $event
@@ -44,7 +44,7 @@ final class EventRecord extends Model
             'id' => 'integer',
             'event_id' => 'integer',
             'user_profile_id' => 'integer',
-            'ranking' => 'integer',
+            'rank' => 'integer',
             'score' => 'decimal:2',
             'registered_at' => 'datetime',
         ];
