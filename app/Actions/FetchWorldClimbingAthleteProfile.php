@@ -19,12 +19,11 @@ final readonly class FetchWorldClimbingAthleteProfile
      */
     public function handle(int $athleteId, string $firstname, string $lastname): ?array
     {
-        $slug = Str::slug($firstname.' '.$lastname);
-        $url = self::BASE_URL.'/'.$athleteId.'/'.$slug;
-
+        $slug = Str::slug($firstname . ' ' . $lastname);
+        $url = self::BASE_URL . '/' . $athleteId . '/' . $slug;
         $response = Http::withHeaders([
             'RSC' => '1',
-            'Next-Url' => '/athlete/'.$athleteId.'/'.$slug,
+            'Next-Url' => '/athlete/' . $athleteId . '/' . $slug,
         ])->get($url);
 
         if ($response->failed()) {
@@ -49,7 +48,6 @@ final readonly class FetchWorldClimbingAthleteProfile
             }
 
             $data = $this->extractAthleteData($line);
-            dd($data);
             if ($data !== null) {
                 return $data;
             }

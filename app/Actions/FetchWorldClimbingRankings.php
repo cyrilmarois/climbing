@@ -30,7 +30,7 @@ final readonly class FetchWorldClimbingRankings
             'Next-Url' => '/rankings/index',
             'Next-Action' => '40046403c2b5e569007d2d6f9cc3677b71f9e62eaf',
         ])->withBody(json_encode([['dcat_id' => 3]]), 'text/plain;charset=UTF-8')
-            ->post(self::BASE_URL.'?'.http_build_query([
+            ->post(self::BASE_URL . '?' . http_build_query([
                 'discipline' => $this->mapDiscipline($discipline),
                 'category' => $category,
             ]));
@@ -47,7 +47,6 @@ final readonly class FetchWorldClimbingRankings
      */
     private function parseRscResponse(string $body): ?array
     {
-        // dd($body);
         foreach (explode("\n", $body) as $line) {
             if (! str_starts_with($line, '1:')) {
                 continue;
