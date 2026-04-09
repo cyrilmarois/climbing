@@ -2,7 +2,19 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AthleteController;
+use App\Http\Controllers\AthleteRankingController;
+use App\Http\Controllers\ClubController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventRecordController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\RouteCommentController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\RouteRecordController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserEmailResetNotification;
 use App\Http\Controllers\UserEmailVerification;
@@ -13,10 +25,26 @@ use App\Http\Controllers\UserTwoFactorAuthenticationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', fn () => Inertia::render('Welcome'))->name('home');
+Route::get('/', fn() => Inertia::render('Welcome'))->name('home');
+
+Route::get('send-it', fn() => Inertia::render('send-it/Landing'))->name('send-it.landing');
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
-    Route::get('dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
+
+    // Resources...
+    Route::resource('athletes', AthleteController::class);
+    Route::resource('athlete-rankings', AthleteRankingController::class);
+    Route::resource('clubs', ClubController::class);
+    Route::resource('colors', ColorController::class);
+    Route::resource('countries', CountryController::class);
+    Route::resource('events', EventController::class);
+    Route::resource('event-records', EventRecordController::class);
+    Route::resource('grades', GradeController::class);
+    Route::resource('routes', RouteController::class);
+    Route::resource('route-comments', RouteCommentController::class);
+    Route::resource('route-records', RouteRecordController::class);
+    Route::resource('tags', TagController::class);
 });
 
 Route::middleware('auth')->group(function (): void {
@@ -35,7 +63,7 @@ Route::middleware('auth')->group(function (): void {
         ->name('password.update');
 
     // Appearance...
-    Route::get('settings/appearance', fn () => Inertia::render('appearance/Update'))->name('appearance.edit');
+    Route::get('settings/appearance', fn() => Inertia::render('appearance/Update'))->name('appearance.edit');
 
     // User Two-Factor Authentication...
     Route::get('settings/two-factor', [UserTwoFactorAuthenticationController::class, 'show'])
