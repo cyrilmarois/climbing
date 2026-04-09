@@ -27,6 +27,8 @@ use Inertia\Inertia;
 
 Route::get('/', fn() => Inertia::render('Welcome'))->name('home');
 
+Route::get('send-it', fn() => Inertia::render('send-it/Landing'))->name('send-it.landing');
+
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
 
